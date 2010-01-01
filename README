@@ -1,16 +1,18 @@
-Test-Curl version 0.01
-======================
+NAME
+    Test::Curl - Testing HTTP response using WWW::Curl::Easy.
 
-The README is used to introduce the module and provide instructions on
-how to install the module, any machine dependencies it may have (for
-example C compilers and installed libraries) and any other information
-that should be provided before the module is installed.
+VERSION
+    Version 0.01
 
-A README file is required for CPAN modules since CPAN extracts the
-README file from a module distribution so that people browsing the
-archive can use it get an idea of the modules uses. It is usually a
-good idea to provide version information here so that people can
-decide whether fixes for the module are worth downloading.
+SYNOPSIS
+    use Test::More tests => 5;
+    use Test::Curl;
+
+    curl_ok('http://localhost', 200);
+    curl_200_ok('http://localhost');
+    curl_200_ok('http://www.kernel.org/pub/linux/kernel/v2.6/testing/linux-2.6.33-rc1.tar.bz2');
+    curl_200_not_ok('http://localhost1');
+    curl_200_not_ok('http://google.com');
 
 INSTALLATION
 
@@ -22,10 +24,7 @@ To install this module type the following:
    make install
 
 DEPENDENCIES
-
-This module requires these other modules and libraries:
-
-  blah blah blah
+    This module uses WWW::Curl::Easy.
 
 COPYRIGHT AND LICENCE
 
