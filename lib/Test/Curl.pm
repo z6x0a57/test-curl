@@ -6,22 +6,31 @@ Test::Curl - Testing HTTP response using WWW::Curl::Easy.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 =head1 SYNOPSIS
-
-    use Test::More tests => 5;
+    
     use Test::Curl;
+    use Test::More tests => 4;
+    use WWW::Curl::Easy;
 
-    curl_ok('http://localhost', 200);
-    curl_200_ok('http://localhost');
-    curl_200_ok('http://www.kernel.org/pub/linux/kernel/v2.6/testing/linux-2.6.33-rc1.tar.bz2');
-    curl_200_not_ok('http://localhost1');
-    curl_200_not_ok('http://google.com');
+    my $curl = new WWW::Curl::Easy;
+	
+    $curl->setopt(CURLOPT_HEADER, 0);
+    $curl->setopt(CURLOPT_FOLLOWLOCATION, 0);
+    $curl->setopt(CURLOPT_VERBOSE, 0);
+    $curl->setopt(CURLOPT_UNRESTRICTED_AUTH, 1);
+    $curl->setopt(CURLOPT_NOBODY, 1);
+    $curl->setopt(CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)');
+
+    curl_ok($curl, 'http://localhost', 200);
+    curl_not_ok($curl, 'http://localhost', 404);
+    curl_200_ok($curl, 'http://github.com');
+    curl_200_not_ok($curl, 'http://www.github.com');
 
 =cut
 
@@ -62,88 +71,67 @@ our @EXPORT = qw(curl_ok curl_not_ok curl_200_ok curl_200_not_ok
 
 =cut
 
-sub init_curl
-{
-    my ($url, $follow_location) = @_;
-
-    my $curl = new WWW::Curl::Easy;
-	
-    $curl->setopt(CURLOPT_HEADER, 0);
-    $curl->setopt(CURLOPT_URL, $url);
-	$curl->setopt(CURLOPT_FOLLOWLOCATION, $follow_location);
-	$curl->setopt(CURLOPT_VERBOSE, 0);
-	$curl->setopt(CURLOPT_UNRESTRICTED_AUTH, 1);
-	$curl->setopt(CURLOPT_NOBODY, 1);
-	$curl->setopt(CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)');
-	
-	return $curl;
-}
-
 sub get_curl_http_code
 {
-	my ($url, $follow_location) = @_;
-    $follow_location = 0 if (!defined($follow_location));
-
-	my $curl = init_curl($url, $follow_location);	
-
+	my ($curl, $url) = @_;
+    
+    $curl->setopt(CURLOPT_URL, $url);
 	my $ret = $curl->perform;
 
 	return $curl->getinfo(CURLINFO_HTTP_CODE) if (!$ret);
 	return -$ret;
 }
 
-=head2 curl_ok ($url, $status)
+=head2 curl_ok ($curl, $url, $status)
 
 Checks if a host replies with $status correctly.
 
 =cut
 
 sub curl_ok {
-    my $url = shift;
-    my $status = shift;
+    my ($curl, $url, $status) = @_;
 
-    my $result = get_curl_http_code($url);
+    my $result = get_curl_http_code($curl, $url);
 
     ok($result == $status);
 }
 
-=head2 curl_not_ok ($url, $status)
+=head2 curl_not_ok ($curl, $url, $status)
 
 Does the exact opposite of curl_ok().
 
 =cut
 
 sub curl_not_ok {
-    my $url = shift;
-    my $status = shift;
+    my ($curl, $url, $status) = @_;
 
-    my $result = get_curl_http_code($url);
+    my $result = get_curl_http_code($curl, $url);
 
     ok($result != $status);
 }
 
-=head2 curl_200_ok ($url)
+=head2 curl_200_ok ($curl, $url)
 
 Checks if a host replies with status 200 correctly.
 
 =cut
 
 sub curl_200_ok {
-    my $url = shift;
+    my ($curl, $url) = @_;
     
-    curl_ok($url, 200);
+    curl_ok($curl, $url, 200);
 }
 
-=head2 curl_200_not_ok ($url)
+=head2 curl_200_not_ok ($curl, $url)
 
 Does the exact opposite of curl_200_ok().
 
 =cut
 
 sub curl_200_not_ok {
-    my $url = shift;
+    my ($curl, $url) = @_;
 
-    curl_not_ok($url, 200);
+    curl_not_ok($curl, $url, 200);
 }
 
 1;

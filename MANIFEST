@@ -2,5 +2,6 @@ Changes
 Makefile.PL
 MANIFEST
 README
+t/00-load.t
 t/Test-Curl.t
 lib/Test/Curl.pm
