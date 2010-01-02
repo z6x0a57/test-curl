@@ -152,7 +152,7 @@ __END__
 
 You can find documentation for this module with the perldoc command.
 
-perldoc Test::Ping
+perldoc Test::Curl
 
 If you have Git, this is the clone path:
 
@@ -176,15 +176,7 @@ z6x0a57, E<lt>z6x0a57@gmail.comE<gt>
 
 Copyright (C) 2010 by z6x0a57
 
-This program is free software; you can redistribute it and/or modify it
-under the terms of either:
-
-=over 4
-
-=item * the GNU General Public License as published by the Free
-Software Foundation; either version 3, or (at your option) any
-later version.
-
-=back
+This library is free software; you can redistribute it and/or modify 
+it under the same terms as Perl itself.
 
 =cut

@@ -39,7 +39,7 @@ SUBROUTINES/METHODS
 SUPPORT
        You can find documentation for this module with the perldoc command.
 
-       perldoc Test::Ping
+       perldoc Test::Curl
 
        If you have Git, this is the clone path:
 
@@ -57,10 +57,6 @@ AUTHOR
 COPYRIGHT AND LICENSE
        Copyright (C) 2010 by z6x0a57
 
-       This program is free software; you can redistribute it and/or modify it
-       under the terms of either:
-
-       ·   the GNU General Public License as published by the Free Software
-           Foundation; either version 3, or (at your option) any later
-           version.
+       This library is free software; you can redistribute it and/or modify it
+       under the same terms as Perl itself.
 
