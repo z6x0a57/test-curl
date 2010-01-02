@@ -136,7 +136,7 @@ sub curl_200_ok {
 
 =head2 curl_200_not_ok ($url)
 
-Does the exact opposite of curl_200_ok.
+Does the exact opposite of curl_200_ok().
 
 =cut
 
@@ -148,17 +148,25 @@ sub curl_200_not_ok {
 
 1;
 __END__
+=head1 SUPPORT
 
-=head1 SEE ALSO
+You can find documentation for this module with the perldoc command.
 
-Mention other useful documentation such as the documentation of
-related modules or operating system documentation (such as man pages
-in UNIX), or any relevant external documentation such as RFCs or
-standards.
+perldoc Test::Ping
 
-If you have a mailing list set up for your module, mention it here.
+If you have Git, this is the clone path:
 
-If you have a web site set up for your module, mention it here.
+git@github.com:z6x0a57/test-curl.git
+
+You can also look for information at:
+
+=over 4
+
+=item * GitHub Website:
+
+L<http://github.com/z6x0a57/test-curl/tree/master>
+
+=back
 
 =head1 AUTHOR
 
@@ -168,9 +176,15 @@ z6x0a57, E<lt>z6x0a57@gmail.comE<gt>
 
 Copyright (C) 2010 by z6x0a57
 
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself, either Perl version 5.10.1 or,
-at your option, any later version of Perl 5 you may have available.
+This program is free software; you can redistribute it and/or modify it
+under the terms of either:
 
+=over 4
+
+=item * the GNU General Public License as published by the Free
+Software Foundation; either version 3, or (at your option) any
+later version.
+
+=back
 
 =cut
