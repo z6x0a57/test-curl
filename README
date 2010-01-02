@@ -1,39 +1,56 @@
 NAME
-    Test::Curl - Testing HTTP response using WWW::Curl::Easy.
+       Test::Curl - Testing HTTP response using WWW::Curl::Easy.
 
 VERSION
-    Version 0.01
+       Version 0.01
 
 SYNOPSIS
-    use Test::More tests => 5;
-    use Test::Curl;
+           use Test::More tests => 5;
+           use Test::Curl;
 
-    curl_ok('http://localhost', 200);
-    curl_200_ok('http://localhost');
-    curl_200_ok('http://www.kernel.org/pub/linux/kernel/v2.6/testing/linux-2.6.33-rc1.tar.bz2');
-    curl_200_not_ok('http://localhost1');
-    curl_200_not_ok('http://google.com');
+           curl_ok('http://localhost', 200);
+           curl_200_ok('http://localhost');
+           curl_200_ok('http://www.kernel.org/pub/linux/kernel/v2.6/testing/linux-2.6.33-rc1.tar.bz2');
+           curl_200_not_ok('http://localhost1');
+           curl_200_not_ok('http://google.com');
 
-INSTALLATION
+EXPORT
+       curl_ok
 
-To install this module type the following:
+       curl_not_ok
 
-   perl Makefile.PL
-   make
-   make test
-   make install
+       curl_200_ok
 
-DEPENDENCIES
-    This module uses WWW::Curl::Easy.
+       curl_200_not_ok
 
-COPYRIGHT AND LICENCE
+SUBROUTINES/METHODS
+   curl_ok ($url, $status)
+       Checks if a host replies with $status correctly.
 
-Put the correct copyright and licence information here.
+   curl_not_ok ($url, $status)
+       Does the exact opposite of curl_ok().
 
-Copyright (C) 2010 by z6x0a57
+   curl_200_ok ($url)
+       Checks if a host replies with status 200 correctly.
 
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself, either Perl version 5.10.1 or,
-at your option, any later version of Perl 5 you may have available.
+   curl_200_not_ok ($url)
+       Does the exact opposite of curl_200_ok.
 
+SEE ALSO
+       Mention other useful documentation such as the documentation of related
+       modules or operating system documentation (such as man pages in UNIX),
+       or any relevant external documentation such as RFCs or standards.
 
+       If you have a mailing list set up for your module, mention it here.
+
+       If you have a web site set up for your module, mention it here.
+
+AUTHOR
+       z6x0a57, <z6x0a57@gmail.com>
+
+COPYRIGHT AND LICENSE
+       Copyright (C) 2010 by z6x0a57
+
+       This library is free software; you can redistribute it and/or modify it
+       under the same terms as Perl itself, either Perl version 5.10.1 or, at
+       your option, any later version of Perl 5 you may have available.

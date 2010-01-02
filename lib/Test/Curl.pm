@@ -1,5 +1,30 @@
 package Test::Curl;
 
+=head1 NAME
+
+Test::Curl - Testing HTTP response using WWW::Curl::Easy.
+
+=head1 VERSION
+
+Version 0.01
+
+=cut
+
+our $VERSION = '0.01';
+
+=head1 SYNOPSIS
+
+    use Test::More tests => 5;
+    use Test::Curl;
+
+    curl_ok('http://localhost', 200);
+    curl_200_ok('http://localhost');
+    curl_200_ok('http://www.kernel.org/pub/linux/kernel/v2.6/testing/linux-2.6.33-rc1.tar.bz2');
+    curl_200_not_ok('http://localhost1');
+    curl_200_not_ok('http://google.com');
+
+=cut
+
 use 5.010001;
 use strict;
 use warnings;
@@ -11,13 +36,17 @@ require Exporter;
 
 our @ISA = qw(Exporter);
 
-# Items to export into callers namespace by default. Note: do not export
-# names by default without a very good reason. Use EXPORT_OK instead.
-# Do not simply export all your public functions/methods/constants.
+=head1 EXPORT
 
-# This allows declaration	use Test::Curl ':all';
-# If you do not need this, moving things directly into @EXPORT or @EXPORT_OK
-# will save memory.
+curl_ok
+
+curl_not_ok
+
+curl_200_ok
+
+curl_200_not_ok
+
+=cut
 
 our %EXPORT_TAGS = ( 'all' => [ qw(curl_ok curl_not_ok curl_200_ok curl_200_not_ok
 	
@@ -29,16 +58,9 @@ our @EXPORT = qw(curl_ok curl_not_ok curl_200_ok curl_200_not_ok
 	
 );
 
-our $VERSION = '0.01';
+=head1 SUBROUTINES/METHODS
 
-
-
-# Initialize curl
-#
-# @param $url string
-# @param follow_location {0, 1}
-#
-# @return WWW::Curl::Easy object
+=cut
 
 sub init_curl
 {
@@ -57,12 +79,6 @@ sub init_curl
 	return $curl;
 }
 
-# Get curl http code.
-#
-# @param url string
-#
-# @return integer httpd code or string on error
-
 sub get_curl_http_code
 {
 	my ($url, $follow_location) = @_;
@@ -76,6 +92,12 @@ sub get_curl_http_code
 	return -$ret;
 }
 
+=head2 curl_ok ($url, $status)
+
+Checks if a host replies with $status correctly.
+
+=cut
+
 sub curl_ok {
     my $url = shift;
     my $status = shift;
@@ -84,6 +106,12 @@ sub curl_ok {
 
     ok($result == $status);
 }
+
+=head2 curl_not_ok ($url, $status)
+
+Does the exact opposite of curl_ok().
+
+=cut
 
 sub curl_not_ok {
     my $url = shift;
@@ -94,13 +122,24 @@ sub curl_not_ok {
     ok($result != $status);
 }
 
+=head2 curl_200_ok ($url)
+
+Checks if a host replies with status 200 correctly.
+
+=cut
 
 sub curl_200_ok {
     my $url = shift;
     
     curl_ok($url, 200);
 }
-	
+
+=head2 curl_200_not_ok ($url)
+
+Does the exact opposite of curl_200_ok.
+
+=cut
+
 sub curl_200_not_ok {
     my $url = shift;
 
@@ -109,30 +148,6 @@ sub curl_200_not_ok {
 
 1;
 __END__
-# Below is stub documentation for your module. You'd better edit it!
-
-=head1 NAME
-
-Test::Curl - Perl extension for blah blah blah
-
-=head1 SYNOPSIS
-
-  use Test::Curl;
-  blah blah blah
-
-=head1 DESCRIPTION
-
-Stub documentation for Test::Curl, created by h2xs. It looks like the
-author of the extension was negligent enough to leave the stub
-unedited.
-
-Blah blah blah.
-
-=head2 EXPORT
-
-None by default.
-
-
 
 =head1 SEE ALSO
 
@@ -151,7 +166,7 @@ z6x0a57, E<lt>z6x0a57@gmail.comE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2009 by z6x0a57
+Copyright (C) 2010 by z6x0a57
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.10.1 or,
