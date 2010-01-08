@@ -19,7 +19,7 @@ our $VERSION = '0.03';
     use WWW::Curl::Easy;
 
     my $curl = new WWW::Curl::Easy;
-	
+
     $curl->setopt(CURLOPT_HEADER, 0);
     $curl->setopt(CURLOPT_FOLLOWLOCATION, 0);
     $curl->setopt(CURLOPT_VERBOSE, 0);
@@ -58,13 +58,13 @@ curl_200_not_ok
 =cut
 
 our %EXPORT_TAGS = ( 'all' => [ qw(curl_ok curl_not_ok curl_200_ok curl_200_not_ok
-	
+
 ) ] );
 
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 
 our @EXPORT = qw(curl_ok curl_not_ok curl_200_ok curl_200_not_ok
-	
+
 );
 
 =head1 SUBROUTINES/METHODS
@@ -73,13 +73,13 @@ our @EXPORT = qw(curl_ok curl_not_ok curl_200_ok curl_200_not_ok
 
 sub get_curl_http_code
 {
-	my ($curl, $url) = @_;
-    
-    $curl->setopt(CURLOPT_URL, $url);
-	my $ret = $curl->perform;
+    my ($curl, $url) = @_;
 
-	return $curl->getinfo(CURLINFO_HTTP_CODE) if (!$ret);
-	return -$ret;
+    $curl->setopt(CURLOPT_URL, $url);
+    my $ret = $curl->perform;
+
+    return $curl->getinfo(CURLINFO_HTTP_CODE) if (!$ret);
+    return -$ret;
 }
 
 =head2 curl_ok ($curl, $url, $status)

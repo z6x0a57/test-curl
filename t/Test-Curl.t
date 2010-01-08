@@ -12,7 +12,7 @@ use WWW::Curl::Easy;
 #########################
 
 my $curl = new WWW::Curl::Easy;
-	
+
 $curl->setopt(CURLOPT_HEADER, 0);
 $curl->setopt(CURLOPT_FOLLOWLOCATION, 0);
 $curl->setopt(CURLOPT_VERBOSE, 0);
@@ -24,5 +24,5 @@ curl_ok($curl, 'http://github.com', 200);
 curl_not_ok($curl, 'http://github.com', 404);
 curl_200_ok($curl, 'http://github.com');
 curl_200_not_ok($curl, 'http://www.github.com');
- 
+
 1;

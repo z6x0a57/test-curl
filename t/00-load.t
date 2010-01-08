@@ -4,5 +4,5 @@ use warnings;
 use Test::More tests => 1;
 
 BEGIN {
-	use_ok('Test::Curl');
+    use_ok('Test::Curl');
 }
