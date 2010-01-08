@@ -136,6 +136,7 @@ sub curl_200_not_ok {
 
 1;
 __END__
+
 =head1 SUPPORT
 
 You can find documentation for this module with the perldoc command.
