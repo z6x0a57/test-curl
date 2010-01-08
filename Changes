@@ -1,5 +1,9 @@
 Revision history for Perl extension Test::Curl.
 
+0.03    01.08.2010
+        Changed min perl version to 5.006001. 
+        Update Makefile.PL: added PREREQ_PM WWW::Curl::Easy. 
+
 0.02    01.02.2010
         Added curl param to all functions.
 

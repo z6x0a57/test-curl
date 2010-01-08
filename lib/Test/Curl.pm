@@ -10,7 +10,7 @@ Version 0.02
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 =head1 SYNOPSIS
     
@@ -34,7 +34,7 @@ our $VERSION = '0.02';
 
 =cut
 
-use 5.010001;
+use 5.006001;
 use strict;
 use warnings;
 
