@@ -6,7 +6,8 @@ WriteMakefile(
     NAME              => 'Test::Curl',
     VERSION_FROM      => 'lib/Test/Curl.pm', # finds $VERSION
     PREREQ_PM         => {
-                            WWW::Curl::Easy => 0
+                            'Test::More'      => 0,
+                            'WWW::Curl::Easy' => 0
                          }, 
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM  => 'lib/Test/Curl.pm', # retrieve abstract from module

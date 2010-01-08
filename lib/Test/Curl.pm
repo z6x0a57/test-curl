@@ -6,7 +6,7 @@ Test::Curl - Testing HTTP response using WWW::Curl::Easy.
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =cut
 
