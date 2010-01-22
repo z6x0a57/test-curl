@@ -93,7 +93,7 @@ sub curl_ok {
 
     my $result = get_curl_http_code($curl, $url);
 
-    ok($result == $status);
+    ok($result == $status, $url.' '.$result);
 }
 
 =head2 curl_not_ok ($curl, $url, $status)
@@ -107,7 +107,7 @@ sub curl_not_ok {
 
     my $result = get_curl_http_code($curl, $url);
 
-    ok($result != $status);
+    ok($result != $status, $url.' '.$result);
 }
 
 =head2 curl_200_ok ($curl, $url)
