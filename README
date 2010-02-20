@@ -2,7 +2,7 @@ NAME
        Test::Curl - Testing HTTP response using WWW::Curl::Easy.
 
 VERSION
-       Version 0.03
+       Version 0.05
 
 SYNOPSIS
            use Test::Curl;
@@ -16,7 +16,7 @@ SYNOPSIS
            $curl->setopt(CURLOPT_VERBOSE, 0);
            $curl->setopt(CURLOPT_UNRESTRICTED_AUTH, 1);
            $curl->setopt(CURLOPT_NOBODY, 1);
-           $curl->setopt(CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)');
+           $curl->setopt(CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1');
 
            curl_ok($curl, 'http://localhost', 200);
            curl_not_ok($curl, 'http://localhost', 404);
@@ -58,13 +58,15 @@ SUPPORT
 
        ·   GitHub Website:
 
+           http://github.com/z6x0a57/test-curl/tree/master
            <http://github.com/z6x0a57/test-curl/tree/master>
 
 AUTHOR
        z6x0a57, <z6x0a57@gmail.com>
 
-COPYRIGHT AND LICENSE
+LICENSE AND COPYRIGHT
        Copyright (C) 2010 by z6x0a57
 
        This library is free software; you can redistribute it and/or modify it
        under the same terms as Perl itself.
+

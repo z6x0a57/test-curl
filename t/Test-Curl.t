@@ -3,8 +3,6 @@
 
 #########################
 
-# change 'tests => 1' to 'tests => last_test_to_print';
-
 use Test::Curl;
 use Test::More tests => 4;
 use WWW::Curl::Easy;

@@ -1,5 +1,11 @@
 Revision history for Perl extension Test::Curl.
 
+0.05    02.18.2010
+        Changed use base to 'Test::Builder::Module'.
+
+0.04    01.22.2010
+        Added test names.
+
 0.03    01.08.2010
         Changed min perl version to 5.006001. 
         Update Makefile.PL: added PREREQ_PM WWW::Curl::Easy. 
